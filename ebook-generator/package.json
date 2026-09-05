@@ -1,0 +1,20 @@
+{
+  "name": "ebook-generator",
+  "version": "1.0.0",
+  "description": "Generador de ebooks con IA: contenido + diseño profesional listo para descargar, para las marcas de Denisse (Resina Lab, Teje Premium, Naturalmente Velas, Nails Master Pro, Bisutería, Mamá Millennial CR, CIMA Digital Pro, El Dulce Studio).",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.124.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "marked": "^15.0.6",
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.63.0",
+    "zod": "^3.25.0"
+  }
+}

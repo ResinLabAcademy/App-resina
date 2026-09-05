@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Generador de Ebooks · Denisse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: "#161a32",
+          paper: "#fbf8ff",
+          soft: "#e5e6ff"
+        },
+        fontFamily: {
+          heading: ["Manrope", "sans-serif"],
+          body: ["Work Sans", "sans-serif"]
+        }
+      }
+    }
+  };
+</script>
+<style>
+  body { font-family: 'Work Sans', sans-serif; }
+  h1,h2,h3,.heading { font-family: 'Manrope', sans-serif; }
+  .brand-card { transition: all .15s ease; }
+  .brand-card.selected { box-shadow: 0 0 0 2px var(--brand-color, #006064) inset; }
+  .swatch { width: 14px; height: 14px; border-radius: 999px; display: inline-block; }
+  #log::-webkit-scrollbar { width: 6px; }
+  #log::-webkit-scrollbar-thumb { background: #d5d8f9; border-radius: 999px; }
+</style>
+</head>
+<body class="min-h-full bg-paper text-ink">
+<div class="max-w-3xl mx-auto px-4 py-10 md:py-14">
+
+  <header class="mb-8 text-center">
+    <div class="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm tracking-wide uppercase mb-2">
+      <span>📚</span><span>Generador de Ebooks con IA</span>
+    </div>
+    <h1 class="heading text-3xl md:text-4xl font-extrabold">Convierte una idea en un ebook listo para regalar</h1>
+    <p class="text-slate-600 mt-2 max-w-xl mx-auto">Elige tu marca, dile el tema y cuántas páginas quieres. La IA escribe el contenido, genera las imágenes y arma el diseño — te entrega el PDF final.</p>
+  </header>
+
+  <form id="form" class="bg-white/80 backdrop-blur rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-6">
+
+    <div>
+      <label class="block font-semibold text-sm mb-2">1. ¿Para qué marca es este ebook?</label>
+      <div id="brands" class="grid grid-cols-2 md:grid-cols-4 gap-2"></div>
+    </div>
+
+    <div>
+      <label for="topic" class="block font-semibold text-sm mb-2">2. ¿De qué trata el ebook?</label>
+      <textarea id="topic" rows="2" required placeholder="Ej: Los 5 errores que arruinan una pieza de resina y cómo evitarlos"
+        class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600"></textarea>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label for="pages" class="block font-semibold text-sm mb-2">3. ¿Cuántas páginas? <span id="pagesLabel" class="text-slate-500 font-normal">(20)</span></label>
+        <input id="pages" type="range" min="8" max="80" step="1" value="20" class="w-full accent-teal-700"/>
+      </div>
+      <div>
+        <label for="tone" class="block font-semibold text-sm mb-2">Tono</label>
+        <select id="tone" class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600">
+          <option value="cálido, consultivo y narrativo, estilo Marcos Araujo">Cálido y consultivo (recomendado)</option>
+          <option value="técnico y práctico, directo al grano">Técnico y práctico</option>
+          <option value="inspiracional y motivador">Inspiracional</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label for="audience" class="block font-semibold text-sm mb-2">Público objetivo (opcional)</label>
+      <input id="audience" type="text" placeholder="Ej: mujeres que quieren emprender desde casa"
+        class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600"/>
+    </div>
+
+    <button id="submitBtn" type="submit"
+      class="w-full py-3 px-4 bg-teal-700 text-white rounded-full font-semibold shadow-sm hover:bg-teal-800 transition-all flex items-center justify-center gap-2">
+      <span>Generar mi ebook</span>
+      <span>✨</span>
+    </button>
+  </form>
+
+  <section id="progressSection" class="hidden mt-6 bg-white/80 rounded-2xl border border-slate-200 p-6">
+    <h2 class="heading font-bold text-lg mb-3 flex items-center gap-2">
+      <span class="animate-pulse">⏳</span> Generando tu ebook...
+    </h2>
+    <div id="log" class="space-y-1.5 max-h-64 overflow-y-auto text-sm text-slate-700"></div>
+  </section>
+
+  <section id="resultSection" class="hidden mt-6 bg-white rounded-2xl border border-teal-200 p-6 text-center">
+    <div class="text-4xl mb-2">🎉</div>
+    <h2 id="resultTitle" class="heading font-extrabold text-xl mb-1"></h2>
+    <p id="resultSubtitle" class="text-slate-600 mb-4"></p>
+    <a id="downloadBtn" href="#" download
+      class="inline-flex items-center gap-2 py-3 px-6 bg-teal-700 text-white rounded-full font-semibold shadow-sm hover:bg-teal-800 transition-all">
+      ⬇️ Descargar ebook en PDF
+    </a>
+    <button id="resetBtn" type="button" class="block mx-auto mt-4 text-sm text-slate-500 hover:text-slate-700 underline">
+      Generar otro ebook
+    </button>
+  </section>
+
+  <section id="errorSection" class="hidden mt-6 bg-red-50 border border-red-200 rounded-2xl p-6 text-red-800">
+    <p id="errorText" class="font-medium"></p>
+  </section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
