@@ -2,7 +2,7 @@
 
 App que convierte "tema + número de páginas" en un **ebook terminado**: la IA escribe todo el contenido, genera las imágenes y arma el diseño (portada, índice, capítulos, citas destacadas, página de cierre con tu CTA de WhatsApp), y te entrega un **PDF final listo para usar como lead magnet** en cualquiera de tus 8 marcas.
 
-> ⚠️ **Importante sobre dónde vive esto:** este repo (`App-resina`) se publica en GitHub Pages, que solo sirve archivos estáticos. Esta app necesita un servidor (llama a la API de Claude y usa un navegador headless para generar el PDF), así que **no corre en GitHub Pages**. Se ejecuta localmente en tu computadora o en un hosting con Node.js (Render, Railway, un VPS, etc.). El código vive en este repo dentro de `ebook-generator/` para que quede versionado junto a tus demás proyectos.
+> ⚠️ **Importante sobre dónde vive esto:** este repo (`App-resina`) se publica en GitHub Pages, que solo sirve archivos estáticos. Esta app necesita un servidor (llama a la API de Claude y usa un navegador headless para generar el PDF), así que **no corre en GitHub Pages**. Está lista para desplegarse en **Render** (ver más abajo) — el código vive en este repo dentro de `ebook-generator/` para que quede versionado junto a tus demás proyectos.
 
 ## Qué hace exactamente
 
@@ -51,16 +51,45 @@ Todo el ADN de cada marca (colores, tipografía, autor/instructora, palabra clav
 - **Imágenes:** usa [Pollinations.ai](https://pollinations.ai), un servicio gratuito de generación de imágenes con IA que no requiere cuenta ni clave. Si tu red la bloquea, la app usa el diseño vectorial de respaldo automáticamente (ver arriba).
 - Un ebook de ~20 páginas normalmente cuesta unos pocos centavos de dólar en la API de Claude.
 
-## Desplegar para no depender de tu computadora
+## Desplegar en Render
 
-Si quieres tener esto siempre disponible (por ejemplo para que alguien de tu equipo también lo use), despliega la carpeta `ebook-generator/` en cualquier hosting que corra Node.js:
+El repo ya incluye un `render.yaml` (en la raíz de `App-resina`, no dentro de `ebook-generator/`) con todo configurado como "Blueprint" de Render.
 
-- **Render / Railway:** conecta este repo, selecciona `ebook-generator` como directorio raíz, comando de build `npm install && npx playwright install --with-deps chromium`, comando de arranque `npm start`, y agrega `ANTHROPIC_API_KEY` como variable de entorno secreta.
-- **VPS propio:** clona el repo, sigue los mismos pasos de instalación de arriba, y usa `pm2` o un servicio systemd para mantenerlo corriendo.
+### Opción A: Blueprint (recomendado, un solo paso)
+
+1. Entra a [dashboard.render.com](https://dashboard.render.com) → **New** → **Blueprint**.
+2. Conecta el repo `App-resina` (o el fork/remoto que uses).
+3. Render detecta `render.yaml` automáticamente y te va a pedir el único secreto que no viene definido: **`ANTHROPIC_API_KEY`**. Pégala ahí (consíguela en [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)).
+4. Dale a **Apply**. Render construye el servicio (instala dependencias + Chromium con sus librerías del sistema) y lo despliega.
+5. Cuando termine, te da una URL tipo `https://ebook-generator-xxxx.onrender.com` — esa es tu app, abre eso en lugar de `localhost`.
+
+### Opción B: Web Service manual (si no quieres usar el Blueprint)
+
+Si prefieres configurarlo a mano desde el dashboard en vez de leer `render.yaml`:
+
+| Campo | Valor |
+|---|---|
+| Root Directory | `ebook-generator` |
+| Runtime | Node |
+| Build Command | `npm install && npx playwright install --with-deps chromium` |
+| Start Command | `npm start` |
+| Plan | Standard (2 GB RAM) — Chromium necesita memoria de sobra; el plan Free/Starter puede quedarse corto y hacer que la generación falle a mitad de camino |
+| Variable de entorno | `ANTHROPIC_API_KEY` = tu clave (marca "Secret") |
+
+### Cosas a saber sobre correr esto en Render
+
+- **El disco es efímero.** Cada ebook se guarda temporalmente en `output/<id>/` para poder descargarse justo después de generarse. La app misma borra automáticamente esas carpetas después de 2 horas para no llenar el disco — no necesitas hacer nada, pero tampoco esperes que un PDF viejo siga ahí días después. Si generaste algo valioso, descárgalo apenas esté listo.
+- **Arranque en frío:** si usas un plan que "duerme" por inactividad, la primera generación después de dormir puede tardar más (arranca Node + Chromium desde cero).
+- **Logs:** si algo falla, la pestaña "Logs" de tu servicio en Render te muestra el error real (por ejemplo, si te olvidaste de poner `ANTHROPIC_API_KEY`).
+
+### VPS propio (alternativa)
+
+Si en cambio prefieres tu propio servidor: clona el repo, sigue los mismos pasos de instalación de arriba, y usa `pm2` o un servicio systemd para mantenerlo corriendo.
 
 ## Estructura del proyecto
 
 ```
+render.yaml            blueprint de despliegue en Render (vive en la raíz del repo)
 ebook-generator/
   server.js          servidor Express + orquestación de todo el proceso
   src/

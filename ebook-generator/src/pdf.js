@@ -10,7 +10,7 @@ async function withBrowser(fn) {
   // el sistema (útil en servidores donde la descarga automática de
   // Playwright no está disponible). Si no se define, Playwright usa el
   // Chromium que instaló con `npx playwright install chromium`.
-  const launchOptions = { args: ["--no-sandbox"] };
+  const launchOptions = { args: ["--no-sandbox", "--disable-dev-shm-usage"] };
   if (process.env.CHROMIUM_EXECUTABLE_PATH) {
     launchOptions.executablePath = process.env.CHROMIUM_EXECUTABLE_PATH;
   }

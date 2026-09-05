@@ -157,9 +157,36 @@ app.post("/api/generate", async (req, res) => {
 
 app.use("/output", express.static(OUTPUT_DIR));
 
+// En Render (y en la mayoría de hostings) el disco es efímero y compartido
+// por todos los ebooks generados en esa instancia: si nadie limpia, se llena
+// con el tiempo. Como el PDF se descarga justo después de generarse, es
+// seguro borrar cada carpeta de trabajo un rato después de haber terminado.
+const JOB_MAX_AGE_MS = 2 * 60 * 60 * 1000; // 2 horas
+async function cleanupOldJobs() {
+  try {
+    const entries = await fs.readdir(OUTPUT_DIR, { withFileTypes: true });
+    const now = Date.now();
+    await Promise.all(
+      entries
+        .filter((entry) => entry.isDirectory())
+        .map(async (entry) => {
+          const dirPath = path.join(OUTPUT_DIR, entry.name);
+          const stat = await fs.stat(dirPath).catch(() => null);
+          if (stat && now - stat.mtimeMs > JOB_MAX_AGE_MS) {
+            await fs.rm(dirPath, { recursive: true, force: true }).catch(() => {});
+          }
+        })
+    );
+  } catch {
+    // Sin output/ o sin permisos: no es crítico, se reintenta en el siguiente ciclo.
+  }
+}
+setInterval(cleanupOldJobs, 30 * 60 * 1000).unref();
+
 const PORT = process.env.PORT || 4790;
-app.listen(PORT, () => {
-  console.log(`📚 Generador de ebooks corriendo en http://localhost:${PORT}`);
+const HOST = process.env.HOST || "0.0.0.0";
+app.listen(PORT, HOST, () => {
+  console.log(`📚 Generador de ebooks corriendo en http://${HOST}:${PORT}`);
   if (!process.env.ANTHROPIC_API_KEY) {
     console.warn("⚠️  ANTHROPIC_API_KEY no está configurada. Copia .env.example a .env y agrega tu clave.");
   }

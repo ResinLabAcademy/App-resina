@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ebook-generator
+    runtime: node
+    plan: standard
+    rootDir: ebook-generator
+    buildCommand: npm install && npx playwright install --with-deps chromium
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-opus-5
+      - key: NODE_VERSION
+        value: 20.11.1
