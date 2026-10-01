@@ -108,7 +108,35 @@ footer{position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-si
       <div id="pLive" hidden>
         <div class="player"><div id="yt"></div><div class="shield"></div><button class="sound" id="sound" hidden>Activar sonido</button></div>
       </div>
+<section class="fake-chat">
+  <div class="fake-chat-title">
+    💬 Chat de la clase
+  </div>
 
+  <div id="chatMessages" class="chat-messages">
+    <div class="chat-message">
+      <strong>Participante</strong>
+      <p>¡Qué interesante esta técnica!</p>
+    </div>
+
+    <div class="chat-message">
+      <strong>Participante</strong>
+      <p>Estoy tomando nota ✍️</p>
+    </div>
+  </div>
+
+  <form id="chatForm" class="chat-form">
+    <input
+      id="chatInput"
+      type="text"
+      placeholder="Escribe un comentario..."
+      maxlength="200"
+      autocomplete="off"
+    >
+
+    <button type="submit">Enviar</button>
+  </form>
+</section>
       <div class="msg" id="pMsg" hidden></div>
 
       <div class="panel" id="pDone" hidden>
