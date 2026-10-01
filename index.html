@@ -1,169 +1,280 @@
 <!DOCTYPE html>
-
-<html class="h-full" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Iniciar Sesión</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-primary-fixed-variant": "#004f53",
-                        "on-background": "#161a32",
-                        "on-secondary-fixed-variant": "#6f3800",
-                        "surface-container-lowest": "#ffffff",
-                        "on-tertiary": "#ffffff",
-                        "inverse-surface": "#2b2f48",
-                        "error-container": "#ffdad6",
-                        "on-tertiary-fixed": "#251a00",
-                        "on-tertiary-fixed-variant": "#5a4400",
-                        "on-secondary-fixed": "#2f1400",
-                        "secondary-container": "#ffab69",
-                        "surface-container-high": "#e5e6ff",
-                        "tertiary-fixed-dim": "#e7c268",
-                        "on-primary-fixed": "#002021",
-                        "error": "#ba1a1a",
-                        "surface-bright": "#fbf8ff",
-                        "surface-container": "#ececff",
-                        "background": "#fbf8ff",
-                        "secondary-fixed": "#ffdcc4",
-                        "tertiary-fixed": "#ffdf96",
-                        "outline-variant": "#bdc9c9",
-                        "on-error": "#ffffff",
-                        "on-secondary": "#ffffff",
-                        "primary": "#006064",
-                        "on-error-container": "#93000a",
-                        "on-primary": "#ffffff",
-                        "surface-container-low": "#f4f2ff",
-                        "inverse-on-surface": "#f0efff",
-                        "primary-container": "#137a7f",
-                        "surface-tint": "#00696e",
-                        "tertiary": "#6c5200",
-                        "on-surface-variant": "#3e4949",
-                        "on-surface": "#161a32",
-                        "on-tertiary-container": "#fff0d4",
-                        "secondary": "#8e4e14",
-                        "inverse-primary": "#7ed4d9",
-                        "outline": "#6e797a",
-                        "surface": "#fbf8ff",
-                        "surface-dim": "#d5d8f9",
-                        "primary-fixed": "#9bf1f6",
-                        "secondary-fixed-dim": "#ffb780",
-                        "surface-container-highest": "#dee0ff",
-                        "on-primary-container": "#c5fcff",
-                        "primary-fixed-dim": "#7ed4d9",
-                        "surface-variant": "#dee0ff",
-                        "on-secondary-container": "#783d01",
-                        "tertiary-container": "#876a18"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "gutter": "24px",
-                        "sm": "12px",
-                        "lg": "48px",
-                        "margin-desktop": "64px",
-                        "base": "8px",
-                        "xl": "80px",
-                        "md": "24px",
-                        "xs": "4px",
-                        "margin-mobile": "16px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["Work Sans"],
-                        "headline-lg": ["Manrope"],
-                        "headline-md": ["Manrope"],
-                        "label-sm": ["Work Sans"],
-                        "display-lg": ["Manrope"],
-                        "body-md": ["Work Sans"],
-                        "headline-lg-mobile": ["Manrope"],
-                        "body-lg": ["Work Sans"]
-                    },
-                    "fontSize": {
-                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
-                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
-                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
-                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
-                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "600" }],
-                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
-                    }
-                }
-            }
-        }
-    </script>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clases en vivo · Resina Lab</title>
+<meta name="description" content="Dos clases en vivo de resina epóxica. Sábado y domingo, 6:30 pm hora Costa Rica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-        .glass-panel {
-            background: rgba(251, 248, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(189, 201, 201, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 96, 100, 0.05);
-        }
-        
-        .resin-bg {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(229, 230, 255, 0.4) 100%),
-                        url('placeholder');
-            background-size: cover;
-            background-position: center;
-        }
+:root{
+  --ink:#0c1722; --ink2:#14263a; --teal:#19c3b1; --amber:#ffb24a; --pink:#ff5fa2; --mist:#e9f4f3;
+  --line:rgba(233,244,243,.16);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--mist);font-family:'Figtree',system-ui,sans-serif;line-height:1.55;min-height:100vh;overflow-x:hidden}
+h1,h2,.num{font-family:'Bricolage Grotesque','Figtree',sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+/* fondo: capas de resina que se mezclan lento */
+.pour{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.pour i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.38;animation:drift 22s ease-in-out infinite alternate}
+.pour i:nth-child(1){width:60vmax;height:60vmax;background:var(--teal);left:-20vmax;top:-18vmax}
+.pour i:nth-child(2){width:48vmax;height:48vmax;background:var(--pink);right:-18vmax;top:18vh;animation-duration:28s;opacity:.26}
+.pour i:nth-child(3){width:40vmax;height:40vmax;background:var(--amber);left:10vw;bottom:-22vmax;animation-duration:25s;opacity:.2}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.18)}}
+@media (prefers-reduced-motion:reduce){.pour i{animation:none}}
+
+.wrap{position:relative;z-index:1;width:min(920px,100% - 40px);margin-inline:auto}
+header{padding:28px 0 8px;display:flex;align-items:center;gap:12px}
+.mark{width:34px;height:34px;border-radius:50% 50% 50% 8px;background:linear-gradient(135deg,var(--teal),var(--amber));flex:none}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.01em}
+
+.hero{padding:44px 0 28px}
+h1{font-weight:800;font-size:clamp(2.3rem,7.6vw,4.4rem);line-height:1.02;letter-spacing:-.025em;max-width:15ch}
+.sub{margin-top:20px;font-size:1.1rem;max-width:46ch;color:rgba(233,244,243,.82)}
+.sub b{color:#fff;font-weight:600}
+
+/* escenario */
+.stage{margin-top:34px;border:1px solid var(--line);border-radius:22px;background:rgba(12,23,34,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden}
+.stage-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.stage-head h2{font-size:1.25rem;font-weight:600}
+.chip{font-size:.85rem;font-weight:600;padding:5px 12px;border-radius:99px;border:1px solid var(--line)}
+.chip.live{background:var(--pink);border-color:var(--pink);color:#fff}
+.chip.wait{color:var(--amber);border-color:rgba(255,178,74,.5)}
+.chip.done{color:rgba(233,244,243,.6)}
+.panel{padding:34px 22px 38px;text-align:center}
+.panel[hidden]{display:none}
+.when{font-size:1.05rem;color:rgba(233,244,243,.85)}
+.when small{display:block;margin-top:4px;font-size:.88rem;color:rgba(233,244,243,.55)}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:520px;margin:26px auto 6px}
+.cell{border:1px solid var(--line);border-radius:16px;padding:14px 4px 10px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+.num{display:block;font-weight:800;font-size:clamp(2rem,9vw,3.3rem);line-height:1;font-variant-numeric:tabular-nums}
+.lbl{font-size:.8rem;color:rgba(233,244,243,.6)}
+.hint{margin-top:18px;font-size:.95rem;color:rgba(233,244,243,.7)}
+
+.player{position:relative;aspect-ratio:16/9;background:#000}
+.player #yt,.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.shield{position:absolute;inset:0;z-index:2}
+.sound{position:absolute;z-index:3;left:50%;bottom:16px;transform:translateX(-50%);font:600 1rem 'Figtree',sans-serif;background:var(--amber);color:#1a1205;border:0;border-radius:99px;padding:12px 22px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.45)}
+.sound[hidden]{display:none}
+.msg{padding:48px 22px;text-align:center;color:rgba(233,244,243,.8)}
+
+.btn{display:inline-block;margin-top:22px;padding:14px 26px;border-radius:99px;font-weight:600;text-decoration:none;background:var(--teal);color:#04201c;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--mist);border:1px solid var(--line);margin-left:8px}
+.btn[hidden]{display:none}
+
+/* agenda */
+.agenda{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 60px}
+@media(max-width:620px){.agenda{grid-template-columns:1fr}.btn.alt{margin:12px 0 0}}
+.item{all:unset;box-sizing:border-box;cursor:pointer;display:block;padding:16px 18px;border-radius:14px;border-left:4px solid var(--line);background:rgba(255,255,255,.04)}
+.item:hover{background:rgba(255,255,255,.08)}
+.item.on{border-left-color:var(--teal);background:rgba(25,195,177,.1)}
+.item strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem}
+.item span{font-size:.92rem;color:rgba(233,244,243,.7)}
+footer{position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-size:.85rem;color:rgba(233,244,243,.45)}
+</style>
 </head>
-<body class="h-full bg-background text-on-background font-body-md antialiased overflow-hidden">
-<!-- Intent is Login (Transactional) -> Navigation Shell is Suppressed -->
-<main class="h-full w-full flex items-center justify-center relative px-margin-mobile md:px-margin-desktop">
-<!-- Background evoking liquid resin (Abstract representation) -->
-<div class="absolute inset-0 w-full h-full resin-bg z-0" data-alt="A macro photograph of clear, liquid epoxy resin being poured, showing smooth, organic curves and subtle light reflections. The color palette is very bright and airy, dominated by clean whites and very soft, pale teal and amber tints. The lighting is diffused studio light creating a high-key, modern aesthetic. The focus is soft, creating a dreamy, tactile background texture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAcl-qbZ0ZosZDb5FSU7U88RBAZgji1Cy-lvXSFzqdGr4-JqEj8JyGYXE87IA6822FsNfKaqENCyix6ifuHgRs_qvdHa8oT05nUFGy1bvfFcTXuqoY20kQvWMU9nSVNArmQxnzXydswfYKM4M4DQYALyUXxoaiqs9EL8qDlLsxpoJJycRWABw1ZaRwTpymF-rklvM5_K1oRTsta5ryxHjmnf3Hol_LZtu8JkoZEWD1pd1gP-sfqFuQ-')">
+<body>
+<div class="pour" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <header><div class="mark"></div><div class="brand" id="brand"></div></header>
+
+  <section class="hero">
+    <h1>Dos clases gratis de resina, en vivo</h1>
+    <p class="sub" id="sub"></p>
+
+    <div class="stage" id="stage">
+      <div class="stage-head"><h2 id="sTitle"></h2><span class="chip" id="sChip"></span></div>
+
+      <div class="panel" id="pWait" hidden>
+        <p class="when" id="when"></p>
+        <div class="count" role="timer" aria-live="off">
+          <div class="cell"><span class="num" id="cd">00</span><span class="lbl">días</span></div>
+          <div class="cell"><span class="num" id="ch">00</span><span class="lbl">horas</span></div>
+          <div class="cell"><span class="num" id="cm">00</span><span class="lbl">min</span></div>
+          <div class="cell"><span class="num" id="cs">00</span><span class="lbl">seg</span></div>
+        </div>
+        <p class="hint">Deja esta página abierta. El video arranca solo a la hora de la clase.</p>
+        <a class="btn" id="wa" hidden target="_blank" rel="noopener"></a>
+      </div>
+
+      <div id="pLive" hidden>
+        <div class="player"><div id="yt"></div><div class="shield"></div><button class="sound" id="sound" hidden>Activar sonido</button></div>
+      </div>
+
+      <div class="msg" id="pMsg" hidden></div>
+
+      <div class="panel" id="pDone" hidden>
+        <p class="when" id="doneTxt"></p>
+        <a class="btn" id="cta" hidden target="_blank" rel="noopener"></a>
+        <a class="btn alt" id="wa2" hidden target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+
+    <div class="agenda" id="agenda"></div>
+  </section>
 </div>
-<!-- Glassmorphism Container -->
-<div class="glass-panel relative z-10 w-full max-w-md rounded-xl p-lg flex flex-col items-center">
-<!-- Brand / Logo -->
-<div class="flex items-center gap-2 mb-md">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="water_drop">water_drop</span>
-<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Hotmart</h1>
-</div>
-<!-- Header Text -->
-<div class="text-center mb-lg w-full">
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Bienvenido de nuevo</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Acceso exclusivo para miembros registrados. Usa el mismo correo con el que compraste en Hotmart.</p>
-</div>
-<!-- Form -->
-<form action="#" class="w-full flex flex-col gap-md" method="POST" onsubmit="event.preventDefault();">
-<!-- Email Input -->
-<div class="flex flex-col gap-base">
-<label class="font-label-md text-label-md text-on-surface" for="email">Correo electrónico</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-outline" data-icon="mail">mail</span>
-</div>
-<input class="w-full pl-10 pr-3 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm" id="email" name="email" placeholder="tu@correo.com" required="" type="email"/>
-</div>
-</div>
-<!-- Submit Button -->
-<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-full font-label-md text-label-md shadow-sm hover:bg-primary-container hover:text-on-primary-container hover:shadow-md transition-all duration-200 mt-2 flex items-center justify-center gap-2 group" type="submit">
-                    Entrar
-                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</form>
-<!-- Support Footer -->
-<div class="mt-lg pt-md border-t border-outline-variant/30 w-full text-center">
-<p class="font-label-sm text-label-sm text-outline">Acceso exclusivo para miembros registrados. Usa el mismo correo con el que compraste en Hormart.</p>
-<p class="font-label-sm text-label-sm text-outline mt-2">Niizz.lo.95@gmail.com tiene acceso garantizado.</p></div>
-</div>
-</main>
-</body></html>
+<footer id="foot"></footer>
+
+<script>
+/* ============ EDITA SOLO ESTA PARTE ============ */
+const CONFIG = {
+  marca: 'Resina Lab',
+  instructor: 'Yuly Rivas',
+  // Pega aquí el link de WhatsApp del grupo y el link de Hotmart (déjalos '' para ocultar el botón)
+  whatsappUrl: '',
+  whatsappTexto: 'Unirme al grupo de WhatsApp',
+  ctaUrl: '',
+  ctaTexto: 'Quiero entrar al curso',
+  clases: [
+    {
+      titulo: 'Clase 1',
+      tema: 'Escribe aquí el tema de la clase 1',
+      inicio: '2026-10-03T18:30:00-06:00',   // sábado 6:30 pm Costa Rica
+      video: 'PEGA_AQUI_LINK_O_ID_DE_YOUTUBE'
+    },
+    {
+      titulo: 'Clase 2',
+      tema: 'Escribe aquí el tema de la clase 2',
+      inicio: '2026-10-04T18:30:00-06:00',   // domingo 6:30 pm Costa Rica
+      video: 'PEGA_AQUI_LINK_O_ID_DE_YOUTUBE'
+    }
+  ]
+};
+/* ================================================ */
+
+const $ = id => document.getElementById(id);
+const TZ = 'America/Costa_Rica';
+const qs = new URLSearchParams(location.search);
+// Para probar: tuweb.com/?ahora=2026-10-03T18:31:00-06:00
+const skew = qs.get('ahora') ? new Date(qs.get('ahora')).getTime() - Date.now() : 0;
+const now = () => Date.now() + skew;
+
+const vid = s => { const m = String(s).match(/(?:v=|youtu\.be\/|embed\/|live\/|shorts\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(s) ? s : null); };
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const fDia = new Intl.DateTimeFormat('es', {timeZone: TZ, weekday:'long', day:'numeric', month:'long'});
+const fHora = new Intl.DateTimeFormat('es', {timeZone: TZ, hour:'numeric', minute:'2-digit', hour12:true});
+const fLocal = new Intl.DateTimeFormat('es', {weekday:'long', hour:'numeric', minute:'2-digit', hour12:true});
+const localTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const pad = n => String(n).padStart(2,'0');
+const clean = s => s.replace(/\s?([ap])\.\s?m\./i, (_,x)=>' '+x.toLowerCase()+'m');
+
+const clases = CONFIG.clases.map(c => ({...c, t:new Date(c.inicio).getTime(), id:vid(c.video), ended:false}));
+const diaTxt = c => cap(fDia.format(c.t));
+const horaTxt = c => clean(fHora.format(c.t));
+
+$('brand').textContent = CONFIG.marca;
+document.title = 'Clases en vivo · ' + CONFIG.marca;
+$('foot').textContent = '© ' + new Date().getFullYear() + ' ' + CONFIG.marca;
+$('sub').innerHTML = 'Con <b>' + CONFIG.instructor + '</b>. ' + clases.map(c => '<b>' + diaTxt(c).split(' ')[0] + '</b>').join(' y ') + ' a las <b>' + horaTxt(clases[0]) + '</b>, hora Costa Rica.';
+
+[['wa',CONFIG.whatsappUrl,CONFIG.whatsappTexto],['wa2',CONFIG.whatsappUrl,CONFIG.whatsappTexto],['cta',CONFIG.ctaUrl,CONFIG.ctaTexto]].forEach(([id,url,txt])=>{
+  if(url){ const a=$(id); a.href=url; a.textContent=txt; a.hidden=false; }
+});
+
+/* agenda */
+const agenda = $('agenda');
+clases.forEach((c,i) => {
+  const b = document.createElement('button');
+  b.className = 'item'; b.type = 'button';
+  b.innerHTML = '<strong>' + c.titulo + '</strong><span>' + diaTxt(c) + ' · ' + horaTxt(c) + '<br>' + c.tema + '</span>';
+  b.onclick = () => { sel = i; manual = true; mounted = -1; tick(); };
+  agenda.appendChild(b);
+});
+
+let sel = 0, manual = false, mounted = -1, player = null, apiReady = false, apiLoading = false, n = 0;
+
+function loadAPI(){
+  if(apiLoading) return; apiLoading = true;
+  window.onYouTubeIframeAPIReady = () => { apiReady = true; };
+  const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(s);
+}
+const offset = c => Math.max(0, (now() - c.t) / 1000);
+
+function unmount(){
+  if(player){ try{ player.destroy(); }catch(e){} player = null; }
+  if(!$('yt')){ const d=document.createElement('div'); d.id='yt'; document.querySelector('.player').prepend(d); }
+}
+
+function mountPlayer(i){
+  const c = clases[i];
+  if(!c.id){ show('pMsg'); $('pMsg').textContent = 'Falta pegar el link de YouTube de esta clase en el archivo.'; mounted = i; return; }
+  if(!apiReady){ loadAPI(); return; }
+  show('pLive'); unmount(); mounted = i;
+  $('sound').hidden = true;
+  player = new YT.Player('yt', {
+    videoId: c.id,
+    playerVars: {autoplay:1, mute:1, controls:0, disablekb:1, fs:0, rel:0, modestbranding:1, playsinline:1, iv_load_policy:3, start:Math.floor(offset(c))},
+    events: {
+      onReady: e => {
+        if(offset(c) >= e.target.getDuration() - 1){ finish(i); return; }
+        e.target.playVideo(); $('sound').hidden = false;
+      },
+      onStateChange: e => {
+        if(e.data === 0) finish(i);
+        if(e.data === 2){ e.target.seekTo(offset(c), true); e.target.playVideo(); }
+      }
+    }
+  });
+}
+
+$('sound').onclick = () => { if(player){ player.unMute(); player.setVolume(100); } $('sound').hidden = true; };
+
+function finish(i){
+  clases[i].ended = true; unmount(); mounted = -1; manual = false; tick();
+}
+
+function show(id){ ['pWait','pLive','pMsg','pDone'].forEach(p => $(p).hidden = p !== id); }
+
+function tick(){
+  const t = now();
+  if(!manual){
+    const k = clases.findIndex(c => !c.ended);
+    sel = k === -1 ? clases.length - 1 : k;
+  }
+  const c = clases[sel];
+  const state = c.ended ? 'done' : (t >= c.t ? 'live' : 'wait');
+
+  $('sTitle').textContent = c.titulo + ': ' + c.tema;
+  const chip = $('sChip');
+  chip.className = 'chip ' + state;
+  chip.textContent = state === 'live' ? 'En vivo ahora' : state === 'wait' ? 'Próximamente' : 'Terminó';
+  [...agenda.children].forEach((el,i) => el.classList.toggle('on', i === sel));
+
+  if(state === 'wait'){
+    if(player){ unmount(); mounted = -1; }
+    show('pWait');
+    let d = Math.max(0, Math.floor((c.t - t) / 1000));
+    const dd = Math.floor(d/86400); d %= 86400;
+    const hh = Math.floor(d/3600); d %= 3600;
+    $('cd').textContent = pad(dd); $('ch').textContent = pad(hh); $('cm').textContent = pad(Math.floor(d/60)); $('cs').textContent = pad(d % 60);
+    let w = diaTxt(c) + ' · ' + horaTxt(c) + ' (hora Costa Rica)';
+    $('when').innerHTML = w + (localTZ !== TZ ? '<small>En tu zona: ' + cap(clean(fLocal.format(c.t))) + '</small>' : '');
+  } else if(state === 'live'){
+    if(mounted !== sel) mountPlayer(sel);
+    else if(player && player.getCurrentTime && n % 15 === 0){
+      try{ if(Math.abs(player.getCurrentTime() - offset(c)) > 6) player.seekTo(offset(c), true); }catch(e){}
+    }
+  } else {
+    show('pDone');
+    const next = clases.find(x => !x.ended);
+    $('doneTxt').textContent = next
+      ? 'Esta clase ya terminó. La siguiente es el ' + diaTxt(next).toLowerCase() + ' a las ' + horaTxt(next) + ' (hora Costa Rica).'
+      : 'Gracias por acompañarnos en las dos clases.';
+    $('cta').hidden = !CONFIG.ctaUrl || !!next;
+  }
+  n++;
+}
+
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
