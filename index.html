@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Clases en vivo · Resina Lab</title>
-<meta name="description" content="Dos clases en vivo de resina epóxica. Sábado y domingo, 6:30 pm hora Costa Rica.">
+<title>Clases de resina · Resina Lab</title>
+<meta name="description" content="Dos clases de resina epóxica. Sábado y domingo, 6:30 pm hora Costa Rica.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -87,7 +87,7 @@ footer{position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-si
   <header><div class="mark"></div><div class="brand" id="brand"></div></header>
 
   <section class="hero">
-    <h1>Dos clases gratis de resina, en vivo</h1>
+    <h1>Dos clases gratis de resina</h1>
     <p class="sub" id="sub"></p>
 
     <div class="stage" id="stage">
@@ -128,23 +128,17 @@ footer{position:relative;z-index:1;text-align:center;padding:0 20px 40px;font-si
 const CONFIG = {
   marca: 'Resina Lab',
   instructor: 'Yuly Rivas',
-  // Pega aquí el link de WhatsApp del grupo y el link de Hotmart (déjalos '' para ocultar el botón)
-  whatsappUrl: '',
-  whatsappTexto: 'Unirme al grupo de WhatsApp',
-  ctaUrl: '',
-  ctaTexto: 'Quiero entrar al curso',
-  clases: [
     {
       titulo: 'Clase 1',
-      tema: 'Escribe aquí el tema de la clase 1',
+      tema: 'SEMINARIO DEMOSTRATIVO DE RESINA CLASE 1',
       inicio: '2026-10-03T18:30:00-06:00',   // sábado 6:30 pm Costa Rica
-      video: 'PEGA_AQUI_LINK_O_ID_DE_YOUTUBE'
+      video: 'https://www.youtube.com/live/Uz3lwWWhpAs?si=k_zqJOC-Mp-Bhj2Z'
     },
     {
       titulo: 'Clase 2',
-      tema: 'Escribe aquí el tema de la clase 2',
+      tema: 'SEMINARIO DEMOSTRATIVO DE RESINA CLASE 2',
       inicio: '2026-10-04T18:30:00-06:00',   // domingo 6:30 pm Costa Rica
-      video: 'PEGA_AQUI_LINK_O_ID_DE_YOUTUBE'
+      video: 'https://www.youtube.com/live/d8a1Z2sXnGo?si=UdegClZoZPJA2nwt'
     }
   ]
 };
@@ -171,7 +165,7 @@ const diaTxt = c => cap(fDia.format(c.t));
 const horaTxt = c => clean(fHora.format(c.t));
 
 $('brand').textContent = CONFIG.marca;
-document.title = 'Clases en vivo · ' + CONFIG.marca;
+document.title = 'Clases de resina epóxica · ' + CONFIG.marca;
 $('foot').textContent = '© ' + new Date().getFullYear() + ' ' + CONFIG.marca;
 $('sub').innerHTML = 'Con <b>' + CONFIG.instructor + '</b>. ' + clases.map(c => '<b>' + diaTxt(c).split(' ')[0] + '</b>').join(' y ') + ' a las <b>' + horaTxt(clases[0]) + '</b>, hora Costa Rica.';
 
